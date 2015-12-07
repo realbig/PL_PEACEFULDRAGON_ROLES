@@ -88,10 +88,10 @@ class FilterUsersCaps {
 
 		// If the current user does not have any filtering, return the capabilities unfiltered
 		// OR if there is a wildcard in the array
-		if ( ! array_key_exists( $user->ID, $this->allowed_caps )
-		     && ! array_key_exists( $user->ID, $this->disallowed_caps )
-		     && ! array_key_exists( '*', $this->allowed_caps )
-		     && ! array_key_exists( '*', $this->disallowed_caps )
+		if ( ( ! array_key_exists( $user->ID, $this->allowed_caps )
+		     && ! array_key_exists( $user->ID, $this->disallowed_caps ) )
+		     || ( array_key_exists( '*', $this->allowed_caps )
+		     || array_key_exists( '*', $this->disallowed_caps ) )
 		) {
 			return $caps;
 		}
